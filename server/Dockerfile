@@ -13,6 +13,7 @@ RUN npm install
 COPY src /demoapp/src
 COPY test /demoapp/test
 COPY static /demoapp/static
+COPY contrib /demoapp/contrib
 
 # Configure container
 EXPOSE 3000

@@ -1,0 +1,14 @@
+<script>
+    // Inject standard livereload snippet (host may be something unexpected due to port forwards etc):
+    document.write('<script src="http://' + location.hostname + ':35729/livereload.js"></' + 'script>');
+</script>
+
+<script>
+    // Listen for disconnect/connect-cycles (as those mean the server got reloaded):
+    (function() {
+        var connectedTimes = 0;
+        LiveReload.on('connect', function() {
+            if (++connectedTimes > 1) LiveReload.reloader.reload('', {});
+        });
+    })();
+</script>
