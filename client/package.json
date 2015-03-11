@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "start": "echo 'Using precompiled static assets for demoapp-client'",
     "bundle-static-assets": "cp -r app/index.html bower_components/bootstrap bower_components/jquery/dist/jquery.js static",
     "build": "npm run bundle-static-assets && browserify -t [ reactify --es6 ] app/components/DemoApp.jsx -o static/bundle.js",
-    "watch": "npm run bundle-static-assets && watchify   -t [ reactify --es6 ] app/components/DemoApp.jsx -o static/bundle.js -v"
+    "watch": "npm run bundle-static-assets && node contrib/polling-watchify.js -t [ reactify --es6 ] app/components/DemoApp.jsx -o static/bundle.js -v"
   },
   "author": "Jarno Rantanen <jarno.rantanen@futurice.com>",
   "license": "MIT",
