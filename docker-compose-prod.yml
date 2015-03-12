@@ -1,0 +1,16 @@
+redis:
+  image: redis:2.8.19
+
+client:
+#  image: jareware/demoapp-client:latest
+  build: client/
+
+server:
+#  image: jareware/demoapp-server:latest
+  build: server/
+  links:
+    - redis:redis
+  volumes_from:
+    - client
+  ports:
+    - "80:3000"

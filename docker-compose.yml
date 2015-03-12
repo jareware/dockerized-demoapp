@@ -1,0 +1,24 @@
+redis:
+  image: redis:2.8.19
+
+client:
+  build: client/
+  command: watch
+  volumes:
+    - client/app:/demoapp/app
+
+server:
+  build: server/
+  command: watch
+  links:
+    - redis:redis
+  volumes_from:
+    - client
+  volumes:
+    - server/src:/demoapp/src
+    - server/test:/demoapp/test
+  environment:
+    - ENABLE_LIVERELOAD=1
+  ports:
+    - "3000:3000"
+    - "35729:35729"
